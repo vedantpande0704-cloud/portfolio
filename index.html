@@ -461,11 +461,10 @@
 <footer>
   <div class="logo">VP.</div>
   <div class="easter">P.S. I can also solve a Rubik's cube. <span class="cube">🎲</span></div>
-  <div style="opacity:.8; font-family:'Fredoka One', cursive; font-size:0.9rem;">© 2026 · BBA Graduate · Khamgaon, MH</div>
+  <div class="footer-copy" style="opacity:.8; font-family:'Fredoka One', cursive; font-size:0.9rem;">© 2026 · BBA Graduate · Khamgaon, MH</div>
 </footer>
 
 <script src="script.js"></script>
-
 
 <style>
   /* Admin Bar */
@@ -528,7 +527,7 @@
   /* Edit Mode Visual Feedback */
   body.vp-edit-active { padding-top: 60px !important; }
   body.vp-edit-active nav { top: 60px !important; }
-  body.vp-edit-active main, body.vp-edit-active .marquee { outline: 3px dashed #a78bfa; outline-offset: 4px; position: relative;}
+  body.vp-edit-active main, body.vp-edit-active .marquee, body.vp-edit-active footer { outline: 3px dashed #a78bfa; outline-offset: 4px; position: relative;}
   
   /* Editable Text Feedback */
   body.vp-edit-active [contenteditable="true"] { transition: all 0.2s; outline: 2px solid transparent; border-radius: 4px; }
@@ -580,8 +579,9 @@
 <script>
 (function() {
   // --- 1. PERSISTENCE BOOTSTRAP (Runs on every page load) ---
+  // ADDED footer to the list of elements the Admin Panel saves!
   const storedMains = localStorage.getItem('vp_saved_mains');
-  const mainContainers = document.querySelectorAll('main, .marquee');
+  const mainContainers = document.querySelectorAll('main, .marquee, footer');
   
   if (storedMains) {
     try {
@@ -600,8 +600,8 @@
   const ADMIN_PASS = 'vedant@9763';
   const SESSION_KEY = 'vp_admin_session';
   
-  // TEXT CLASSES: Now includes "b" (bold text) and ".course-ico" (the Course icons)
-  const TEXT_SELECTORS = 'h1, h2, h3, h4, h5, h6, p, span, li, a, strong, em, small, label, b, .course-ico, .ach-icon, .ach-year, .ach-title, .ach-desc, .hi, .stat-num, .stat-lbl, .edu-year, .edu-school, .edu-degree, .edu-grade, .exp-date, .exp-company, .proj-cat, .proj-name, .proj-desc, .cr-header, .contact-note';
+  // TEXT CLASSES: Now includes the footer classes (.logo, .easter, .footer-copy)
+  const TEXT_SELECTORS = 'h1, h2, h3, h4, h5, h6, p, span, li, a, strong, em, small, label, b, .course-ico, .ach-icon, .ach-year, .ach-title, .ach-desc, .hi, .stat-num, .stat-lbl, .edu-year, .edu-school, .edu-degree, .edu-grade, .exp-date, .exp-company, .proj-cat, .proj-name, .proj-desc, .cr-header, .contact-note, .logo, .easter, .footer-copy';
   
   const CARD_SELECTORS = '.proj-card, .exp-entry, .ach-note, .stat, .course-pill, .skill-tag, .edu-entry, .contact-link';
   
@@ -669,6 +669,15 @@
       if ((e.ctrlKey || e.metaKey) && e.key === 's') {
         e.preventDefault();
         saveChanges();
+      }
+    });
+
+    // Force pasting as Plain Text
+    document.addEventListener('paste', (e) => {
+      if (document.body.classList.contains('vp-edit-active') && e.target.isContentEditable) {
+        e.preventDefault();
+        const text = (e.originalEvent || e).clipboardData.getData('text/plain');
+        document.execCommand('insertText', false, text);
       }
     });
   }
@@ -740,13 +749,10 @@
     
     let applied = false;
     
-    // Apply font to whatever text element the user clicked on
     if (document.activeElement && document.activeElement.isContentEditable) {
        document.activeElement.style.fontFamily = font;
        applied = true;
-    } 
-    // Or apply font to an entire card if one is selected
-    else if (selectedElement) {
+    } else if (selectedElement) {
        selectedElement.style.fontFamily = font;
        applied = true;
     }
@@ -757,7 +763,7 @@
        showToast('Click some text or select a card first!', false);
     }
     
-    e.target.value = ''; // Reset dropdown to default
+    e.target.value = ''; 
   });
 
   fileInput.addEventListener('change', function(e) {
