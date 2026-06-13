@@ -39,7 +39,6 @@ body{
   line-height:1.55;
   overflow-x:hidden;
   transition: background 0.5s ease, color 0.5s ease;
-  /* Subtly pronounced ruled paper texture */
   background-image:repeating-linear-gradient(0deg,transparent,transparent 29px,var(--bg-line) 29px,var(--bg-line) 30px);
 }
 a{color:inherit;text-decoration:none}
@@ -48,8 +47,8 @@ button{font:inherit;border:none;background:none;cursor:none}
 @media (hover:none){button{cursor:pointer}}
 
 /* Blanket transition for smooth color flipping */
-.hard-shadow, .tape, .sticker, .clip-paper, nav, .course-pill, .contact-link, form input, form textarea, .resume-btn, .marquee {
-  transition: background 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease, transform 0.2s ease !important;
+.hard-shadow, .tape, .sticker, .clip-paper, nav, .course-pill, .contact-link, form input, form textarea, .resume-btn {
+  transition: background 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.2s ease, transform 0.2s ease !important;
 }
 
 /* ========== SCROLL PROGRESS ========== */
@@ -88,7 +87,7 @@ nav ul a:hover, nav ul a.active{
 
 /* ========== UIVERSE COLOR FLIPPER BUTTON ========== */
 #colorFlipperBtn {
-  transform: scale(0.65); /* Scaled to fit perfectly in the navbar */
+  transform: scale(0.65);
   transform-origin: right center;
 }
 @media(max-width:800px){
@@ -222,8 +221,8 @@ section{padding:4.5rem 0;position:relative}
   color:var(--ink);font-family:'Fredoka One',cursive;font-size:1.5rem; transition: background 0.5s ease, color 0.5s ease;}
 
 /* ========== HERO ========== */
-#hero{padding-top:6rem; padding-bottom:1.5rem; display:grid;grid-template-columns:300px 1fr;gap:3.5rem;align-items:start}
-@media(max-width:850px){#hero{grid-template-columns:1fr; justify-items:center; text-align:center; padding-bottom: 2rem;}}
+#hero{padding-top:7rem;display:grid;grid-template-columns:300px 1fr;gap:3.5rem;align-items:start}
+@media(max-width:850px){#hero{grid-template-columns:1fr; justify-items:center; text-align:center;}}
 
 /* THE POLAROID */
 .polaroid-wrapper { position: relative; animation:float 4s ease-in-out infinite, slideInLeft .5s ease both; }
@@ -258,31 +257,36 @@ section{padding:4.5rem 0;position:relative}
 .hero-bio{font-size:1.1rem;font-weight:700;color:var(--ink-light);max-width:600px;
   animation:fadeUp .5s ease both;animation-delay:.4s}
 
-/* Hero Actions & Resume Button */
-.hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem; margin: 1.8rem 0; animation: fadeUp .5s ease both; animation-delay: .55s; }
-@media(max-width:850px){.hero-actions{justify-content: center; flex-direction: column-reverse;}}
-
-.resume-btn {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  background: var(--blue); color: var(--always-dark);
-  font-family: 'Fredoka One', cursive; font-size: 1.2rem;
-  padding: 0.8rem 1.6rem; border-radius: 8px;
-  border: var(--border-thick) solid var(--ink);
-  box-shadow: 5px 5px 0 var(--ink); text-decoration: none;
-}
-.resume-btn:hover {
-  transform: translate(-3px, -3px);
-  box-shadow: 8px 8px 0 var(--ink);
-  background: var(--green);
-}
-
 .sticky-note{display:inline-block;background:var(--yellow-light);border:2px dashed var(--orange);
   padding:.5rem 1rem;font-family:'Caveat',cursive;font-size:1.4rem; font-weight:700; color:var(--always-dark);
-  transform:rotate(2deg);box-shadow:4px 4px 0 rgba(0,0,0,.1);
+  transform:rotate(2deg);margin:1.5rem 0;box-shadow:4px 4px 0 rgba(0,0,0,.1);
   animation:wobbleIn .7s ease both,wiggle 4s ease-in-out infinite;animation-delay:.7s,1s}
 @keyframes wiggle{0%,100%{transform:rotate(2deg)}50%{transform:rotate(0deg)}}
 
-.skills-row{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.5rem; justify-content: flex-start;}
+/* ========== RESUME BUTTON ========== */
+.resume-btn {
+  display: inline-block;
+  padding: 0.8rem 1.8rem;
+  background: var(--green);
+  color: var(--always-dark);
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.2rem;
+  border: 3px solid var(--ink);
+  border-radius: 8px;
+  box-shadow: 4px 4px 0 var(--ink);
+  margin-top: 1.5rem;
+  margin-right: 1rem;
+  text-decoration: none;
+  cursor: none;
+  animation: fadeUp .5s ease both;
+  animation-delay: .5s;
+}
+.resume-btn:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 7px 7px 0 var(--ink);
+}
+
+.skills-row{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.2rem; justify-content: flex-start;}
 @media(max-width:850px){.skills-row{justify-content: center;}}
 .sticker{display:inline-flex;align-items:center;gap:.35rem;padding:.4rem 1rem; color:var(--always-dark);
   border-radius:999px;border:3px solid var(--ink);font-weight:900;font-size:.85rem;
@@ -319,10 +323,10 @@ section{padding:4.5rem 0;position:relative}
 }
 
 /* ========== MARQUEE ========== */
-.marquee{background:var(--blue-dark);border-top:3px solid var(--ink);border-bottom:3px solid var(--ink);
-  height:34px;overflow:hidden;display:flex;align-items:center; margin-top: 0.5rem; margin-bottom: 1.5rem;}
+.marquee{background:var(--ink);border-top:3px solid var(--ink);border-bottom:3px solid var(--ink);
+  height:44px;overflow:hidden;display:flex;align-items:center;margin-top:2rem; transition: background 0.5s ease;}
 .marquee-track{display:flex;white-space:nowrap;animation:marqueeScroll 28s linear infinite;
-  color:var(--yellow);font-family:'Fredoka One',cursive;font-size:0.9rem; letter-spacing:1px;}
+  color:var(--yellow);font-family:'Fredoka One',cursive;font-size:1.1rem; letter-spacing:1px;}
 .marquee:hover .marquee-track{animation-play-state:paused}
 .marquee-track span{padding:0 1.2rem}
 
@@ -347,7 +351,7 @@ section{padding:4.5rem 0;position:relative}
   width:30px;height:12px;background:var(--ink);border-radius:4px; transition: background 0.5s ease;}
 .clip-paper{background:var(--white);border:3px solid var(--ink); padding:2.5rem 1.5rem 1.5rem;
   background-image:repeating-linear-gradient(to bottom,transparent,transparent 31px,var(--bg-line) 31px,var(--bg-line) 32px);
-  border-left:4px solid #fca5a5; min-height:100%;}
+  border-left:4px solid var(--pink); min-height:100%;}
 .edu-entry{padding:.8rem 0;border-bottom:2px solid var(--ink); margin-bottom:0.5rem;}
 .edu-entry:last-child{border-bottom:none; margin-bottom:0;}
 .edu-year{font-family:'Caveat',cursive;color:var(--red-dark);font-size:1.5rem;font-weight:700}
@@ -427,8 +431,7 @@ section{padding:4.5rem 0;position:relative}
 .proj-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:auto}
 .proj-tags span{font-size:.75rem;padding:.2rem .6rem;background:var(--paper);
   color:var(--ink);border-radius:4px;font-weight:900; border:2px solid var(--ink);}
-  
-/* Hand-drawn style navigation arrows */
+
 .car-btn{position:absolute;top:100px;z-index:10;width:50px;height:50px;border-radius:50%;
   background:var(--yellow);color:var(--always-dark);font-size:1.5rem;font-weight:900;
   display:flex;align-items:center;justify-content:center;
@@ -484,7 +487,7 @@ form textarea{min-height:120px;resize:vertical}
 
 /* ========== FOOTER ========== */
 footer{background:var(--ink);color:var(--paper);border-top:5px solid var(--blue);
-  padding:2rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.5rem;}
+  padding:2rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.5rem;margin-top:4rem}
 footer .logo{font-family:'Fredoka One',cursive;color:var(--yellow);font-size:1.5rem}
 .easter{opacity:.4;transition:opacity .3s;font-family:'Nunito',sans-serif; font-weight:700;}
 .easter:hover{opacity:1}
