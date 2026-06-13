@@ -1,54 +1,130 @@
-/* ====== COLOR FLIPPER: MERGING 20 PALETTES ====== */
+/* ====== 20 BALANCED UI/UX COLOR PALETTES ====== */
 (function(){
   const btn = document.getElementById('colorFlipperBtn');
   const root = document.documentElement;
 
-  const userPalettes = [
-    { '--paper':'#F8F6F2', '--paper2':'#FFFFFF', '--ink':'#1E1E1E', '--blue':'#5B8DEF', '--yellow':'#FFD166', '--green':'#7BD389', isDark: false },
-    { '--paper':'#0F172A', '--paper2':'#1E293B', '--ink':'#F8FAFC', '--blue':'#38BDF8', '--yellow':'#FACC15', '--green':'#4ADE80', isDark: true },
-    { '--paper':'#FFF7ED', '--paper2':'#FFFFFF', '--ink':'#3B2F2F', '--blue':'#60A5FA', '--yellow':'#FDBA74', '--green':'#86EFAC', isDark: false },
-    { '--paper':'#FAFAFA', '--paper2':'#FFFFFF', '--ink':'#111827', '--blue':'#818CF8', '--yellow':'#FDE68A', '--green':'#6EE7B7', isDark: false },
-    { '--paper':'#111827', '--paper2':'#1F2937', '--ink':'#F9FAFB', '--blue':'#A78BFA', '--yellow':'#FCD34D', '--green':'#34D399', isDark: true },
-    { '--paper':'#FEFCE8', '--paper2':'#FFFFFF', '--ink':'#292524', '--blue':'#67E8F9', '--yellow':'#FDE047', '--green':'#86EFAC', isDark: false },
-    { '--paper':'#F5F3FF', '--paper2':'#FFFFFF', '--ink':'#312E81', '--blue':'#818CF8', '--yellow':'#FDE68A', '--green':'#A7F3D0', isDark: false },
-    { '--paper':'#ECFEFF', '--paper2':'#FFFFFF', '--ink':'#164E63', '--blue':'#06B6D4', '--yellow':'#FDE68A', '--green':'#6EE7B7', isDark: false },
-    { '--paper':'#FFF1F2', '--paper2':'#FFFFFF', '--ink':'#4C0519', '--blue':'#60A5FA', '--yellow':'#FDBA74', '--green':'#86EFAC', isDark: false },
-    { '--paper':'#F0FDF4', '--paper2':'#FFFFFF', '--ink':'#14532D', '--blue':'#38BDF8', '--yellow':'#FACC15', '--green':'#4ADE80', isDark: false },
-    { '--paper':'#172554', '--paper2':'#1E3A8A', '--ink':'#EFF6FF', '--blue':'#60A5FA', '--yellow':'#FCD34D', '--green':'#6EE7B7', isDark: true },
-    { '--paper':'#1C1917', '--paper2':'#292524', '--ink':'#FAFAF9', '--blue':'#38BDF8', '--yellow':'#FBBF24', '--green':'#4ADE80', isDark: true },
-    { '--paper':'#FDF2F8', '--paper2':'#FFFFFF', '--ink':'#831843', '--blue':'#818CF8', '--yellow':'#FDE68A', '--green':'#A7F3D0', isDark: false },
-    { '--paper':'#EFF6FF', '--paper2':'#FFFFFF', '--ink':'#1E3A8A', '--blue':'#3B82F6', '--yellow':'#FCD34D', '--green':'#6EE7B7', isDark: false },
-    { '--paper':'#FAF5FF', '--paper2':'#FFFFFF', '--ink':'#581C87', '--blue':'#A78BFA', '--yellow':'#FDE68A', '--green':'#6EE7B7', isDark: false },
-    { '--paper':'#082F49', '--paper2':'#0F172A', '--ink':'#F0F9FF', '--blue':'#38BDF8', '--yellow':'#FACC15', '--green':'#4ADE80', isDark: true },
-    { '--paper':'#F7FEE7', '--paper2':'#FFFFFF', '--ink':'#365314', '--blue':'#60A5FA', '--yellow':'#FDE047', '--green':'#4ADE80', isDark: false },
-    { '--paper':'#FEF2F2', '--paper2':'#FFFFFF', '--ink':'#7F1D1D', '--blue':'#818CF8', '--yellow':'#FDBA74', '--green':'#86EFAC', isDark: false },
-    { '--paper':'#E0F2FE', '--paper2':'#FFFFFF', '--ink':'#0C4A6E', '--blue':'#0EA5E9', '--yellow':'#FDE68A', '--green':'#6EE7B7', isDark: false },
-    { '--paper':'#262626', '--paper2':'#404040', '--ink':'#FAFAFA', '--blue':'#60A5FA', '--yellow':'#FACC15', '--green':'#34D399', isDark: true }
+  const palettes = [
+    { // 1. Original Cream
+      '--paper':'#f4efe6', '--paper2':'#fcfbfa', '--kraft':'#e8d9b5', '--ink':'#111827', '--ink-light':'#374151', '--white':'#ffffff',
+      '--blue':'#60a5fa', '--blue-dark':'#2563eb', '--blue-light':'#bfdbfe', '--yellow':'#fde047', '--yellow-light':'#fef08a',
+      '--green':'#4ade80', '--green-dark':'#16a34a', '--red':'#f87171', '--red-dark':'#dc2626', '--purple':'#a78bfa', '--orange':'#fb923c',
+      '--teal':'#2dd4bf', '--pink':'#f9a8d4', '--always-dark':'#111827', '--bg-line':'rgba(0,0,0,0.06)'
+    },
+    { // 2. Dark Navy
+      '--paper':'#0f172a', '--paper2':'#1e293b', '--kraft':'#334155', '--ink':'#f8fafc', '--ink-light':'#cbd5e1', '--white':'#1e293b',
+      '--blue':'#38bdf8', '--blue-dark':'#7dd3fc', '--blue-light':'#0c4a6e', '--yellow':'#fde047', '--yellow-light':'#422006',
+      '--green':'#34d399', '--green-dark':'#6ee7b7', '--red':'#f87171', '--red-dark':'#fca5a5', '--purple':'#c084fc', '--orange':'#fb923c',
+      '--teal':'#2dd4bf', '--pink':'#f472b6', '--always-dark':'#0f172a', '--bg-line':'rgba(255,255,255,0.05)'
+    },
+    { // 3. Forest Mint
+      '--paper':'#f0fdf4', '--paper2':'#ffffff', '--kraft':'#dcfce7', '--ink':'#064e3b', '--ink-light':'#065f46', '--white':'#ffffff',
+      '--blue':'#60a5fa', '--blue-dark':'#2563eb', '--blue-light':'#dbeafe', '--yellow':'#facc15', '--yellow-light':'#fef9c3',
+      '--green':'#4ade80', '--green-dark':'#16a34a', '--red':'#f87171', '--red-dark':'#dc2626', '--purple':'#a78bfa', '--orange':'#fb923c',
+      '--teal':'#2dd4bf', '--pink':'#f9a8d4', '--always-dark':'#064e3b', '--bg-line':'rgba(6,78,59,0.05)'
+    },
+    { // 4. Terracotta Sunset
+      '--paper':'#fff7ed', '--paper2':'#ffedd5', '--kraft':'#fed7aa', '--ink':'#7c2d12', '--ink-light':'#9a3412', '--white':'#fff7ed',
+      '--blue':'#38bdf8', '--blue-dark':'#0284c7', '--blue-light':'#e0f2fe', '--yellow':'#facc15', '--yellow-light':'#fef08a',
+      '--green':'#4ade80', '--green-dark':'#16a34a', '--red':'#ef4444', '--red-dark':'#b91c1c', '--purple':'#c084fc', '--orange':'#f97316',
+      '--teal':'#2dd4bf', '--pink':'#f472b6', '--always-dark':'#7c2d12', '--bg-line':'rgba(124,45,18,0.05)'
+    },
+    { // 5. Slate Minimalist
+      '--paper':'#f8fafc', '--paper2':'#ffffff', '--kraft':'#e2e8f0', '--ink':'#0f172a', '--ink-light':'#475569', '--white':'#ffffff',
+      '--blue':'#94a3b8', '--blue-dark':'#64748b', '--blue-light':'#f1f5f9', '--yellow':'#cbd5e1', '--yellow-light':'#f8fafc',
+      '--green':'#94a3b8', '--green-dark':'#64748b', '--red':'#cbd5e1', '--red-dark':'#94a3b8', '--purple':'#94a3b8', '--orange':'#cbd5e1',
+      '--teal':'#94a3b8', '--pink':'#cbd5e1', '--always-dark':'#0f172a', '--bg-line':'rgba(15,23,42,0.05)'
+    },
+    { // 6. Velvet Plum
+      '--paper':'#2e1065', '--paper2':'#3b0764', '--kraft':'#4c1d95', '--ink':'#faf5ff', '--ink-light':'#e9d5ff', '--white':'#3b0764',
+      '--blue':'#38bdf8', '--blue-dark':'#7dd3fc', '--blue-light':'#172554', '--yellow':'#fde047', '--yellow-light':'#581c87',
+      '--green':'#34d399', '--green-dark':'#6ee7b7', '--red':'#f43f5e', '--red-dark':'#fb7185', '--purple':'#d8b4fe', '--orange':'#fb923c',
+      '--teal':'#2dd4bf', '--pink':'#f472b6', '--always-dark':'#2e1065', '--bg-line':'rgba(255,255,255,0.05)'
+    },
+    { // 7. Coffee House
+      '--paper':'#f5f5f4', '--paper2':'#e5e5e5', '--kraft':'#d4d4d4', '--ink':'#292524', '--ink-light':'#44403c', '--white':'#f5f5f4',
+      '--blue':'#78716c', '--blue-dark':'#57534e', '--blue-light':'#d6d3d1', '--yellow':'#d97706', '--yellow-light':'#fef3c7',
+      '--green':'#65a30d', '--green-dark':'#4d7c0f', '--red':'#991b1b', '--red-dark':'#7f1d1d', '--purple':'#5b21b6', '--orange':'#c2410c',
+      '--teal':'#0f766e', '--pink':'#be185d', '--always-dark':'#292524', '--bg-line':'rgba(41,37,36,0.06)'
+    },
+    { // 8. Cyber Neon
+      '--paper':'#000000', '--paper2':'#09090b', '--kraft':'#18181b', '--ink':'#a3e635', '--ink-light':'#4ade80', '--white':'#09090b',
+      '--blue':'#22d3ee', '--blue-dark':'#06b6d4', '--blue-light':'#083344', '--yellow':'#fde047', '--yellow-light':'#422006',
+      '--green':'#10b981', '--green-dark':'#059669', '--red':'#f43f5e', '--red-dark':'#e11d48', '--purple':'#d946ef', '--orange':'#f97316',
+      '--teal':'#14b8a6', '--pink':'#ec4899', '--always-dark':'#000000', '--bg-line':'rgba(163,230,53,0.1)'
+    },
+    { // 9. Rose Blush
+      '--paper':'#fff1f2', '--paper2':'#ffe4e6', '--kraft':'#fecdd3', '--ink':'#881337', '--ink-light':'#9f1239', '--white':'#fff1f2',
+      '--blue':'#38bdf8', '--blue-dark':'#0284c7', '--blue-light':'#e0f2fe', '--yellow':'#fbbf24', '--yellow-light':'#fef08a',
+      '--green':'#4ade80', '--green-dark':'#16a34a', '--red':'#f43f5e', '--red-dark':'#e11d48', '--purple':'#c084fc', '--orange':'#fb923c',
+      '--teal':'#2dd4bf', '--pink':'#f472b6', '--always-dark':'#881337', '--bg-line':'rgba(136,19,55,0.05)'
+    },
+    { // 10. True Monochrome
+      '--paper':'#ffffff', '--paper2':'#f5f5f5', '--kraft':'#e5e5e5', '--ink':'#000000', '--ink-light':'#404040', '--white':'#ffffff',
+      '--blue':'#a3a3a3', '--blue-dark':'#737373', '--blue-light':'#e5e5e5', '--yellow':'#d4d4d4', '--yellow-light':'#f5f5f5',
+      '--green':'#a3a3a3', '--green-dark':'#737373', '--red':'#a3a3a3', '--red-dark':'#737373', '--purple':'#a3a3a3', '--orange':'#d4d4d4',
+      '--teal':'#a3a3a3', '--pink':'#d4d4d4', '--always-dark':'#000000', '--bg-line':'rgba(0,0,0,0.1)'
+    },
+    { // 11. Deep Forest
+      '--paper':'#022c22', '--paper2':'#064e3b', '--kraft':'#065f46', '--ink':'#ecfdf5', '--ink-light':'#a7f3d0', '--white':'#064e3b',
+      '--blue':'#38bdf8', '--blue-dark':'#7dd3fc', '--blue-light':'#0c4a6e', '--yellow':'#fde047', '--yellow-light':'#422006',
+      '--green':'#34d399', '--green-dark':'#6ee7b7', '--red':'#f87171', '--red-dark':'#fca5a5', '--purple':'#c084fc', '--orange':'#fb923c',
+      '--teal':'#2dd4bf', '--pink':'#f472b6', '--always-dark':'#022c22', '--bg-line':'rgba(255,255,255,0.05)'
+    },
+    { // 12. Mustard Yellow
+      '--paper':'#fef3c7', '--paper2':'#fde68a', '--kraft':'#fcd34d', '--ink':'#451a03', '--ink-light':'#78350f', '--white':'#fef3c7',
+      '--blue':'#0ea5e9', '--blue-dark':'#0369a1', '--blue-light':'#e0f2fe', '--yellow':'#fbbf24', '--yellow-light':'#fef08a',
+      '--green':'#16a34a', '--green-dark':'#15803d', '--red':'#dc2626', '--red-dark':'#b91c1c', '--purple':'#9333ea', '--orange':'#ea580c',
+      '--teal':'#0d9488', '--pink':'#db2777', '--always-dark':'#451a03', '--bg-line':'rgba(69,26,3,0.05)'
+    },
+    { // 13. Deep Teal
+      '--paper':'#134e4a', '--paper2':'#0f766e', '--kraft':'#0d9488', '--ink':'#f0fdfa', '--ink-light':'#ccfbf1', '--white':'#0f766e',
+      '--blue':'#38bdf8', '--blue-dark':'#7dd3fc', '--blue-light':'#082f49', '--yellow':'#fde047', '--yellow-light':'#713f12',
+      '--green':'#4ade80', '--green-dark':'#86efac', '--red':'#f87171', '--red-dark':'#fca5a5', '--purple':'#c084fc', '--orange':'#fb923c',
+      '--teal':'#2dd4bf', '--pink':'#f472b6', '--always-dark':'#134e4a', '--bg-line':'rgba(255,255,255,0.05)'
+    },
+    { // 14. Retro Lavender
+      '--paper':'#faf5ff', '--paper2':'#f3e8ff', '--kraft':'#e9d5ff', '--ink':'#4c1d95', '--ink-light':'#6d28d9', '--white':'#faf5ff',
+      '--blue':'#3b82f6', '--blue-dark':'#2563eb', '--blue-light':'#dbeafe', '--yellow':'#facc15', '--yellow-light':'#fef9c3',
+      '--green':'#22c55e', '--green-dark':'#16a34a', '--red':'#ef4444', '--red-dark':'#dc2626', '--purple':'#a855f7', '--orange':'#f97316',
+      '--teal':'#14b8a6', '--pink':'#ec4899', '--always-dark':'#4c1d95', '--bg-line':'rgba(76,29,149,0.05)'
+    },
+    { // 15. Charcoal Contrast
+      '--paper':'#27272a', '--paper2':'#3f3f46', '--kraft':'#52525b', '--ink':'#f4f4f5', '--ink-light':'#e4e4e7', '--white':'#3f3f46',
+      '--blue':'#60a5fa', '--blue-dark':'#93c5fd', '--blue-light':'#1e3a8a', '--yellow':'#fde047', '--yellow-light':'#451a03',
+      '--green':'#4ade80', '--green-dark':'#86efac', '--red':'#f87171', '--red-dark':'#fca5a5', '--purple':'#c084fc', '--orange':'#fb923c',
+      '--teal':'#2dd4bf', '--pink':'#f472b6', '--always-dark':'#27272a', '--bg-line':'rgba(255,255,255,0.05)'
+    },
+    { // 16. Mint Breeze
+      '--paper':'#f0fdfa', '--paper2':'#ccfbf1', '--kraft':'#99f6e4', '--ink':'#115e59', '--ink-light':'#134e4a', '--white':'#f0fdfa',
+      '--blue':'#3b82f6', '--blue-dark':'#2563eb', '--blue-light':'#dbeafe', '--yellow':'#fbbf24', '--yellow-light':'#fef9c3',
+      '--green':'#22c55e', '--green-dark':'#16a34a', '--red':'#ef4444', '--red-dark':'#dc2626', '--purple':'#a855f7', '--orange':'#f97316',
+      '--teal':'#0d9488', '--pink':'#ec4899', '--always-dark':'#115e59', '--bg-line':'rgba(17,94,89,0.05)'
+    },
+    { // 17. Sepia Earth
+      '--paper':'#78350f', '--paper2':'#92400e', '--kraft':'#b45309', '--ink':'#fef3c7', '--ink-light':'#fde68a', '--white':'#92400e',
+      '--blue':'#38bdf8', '--blue-dark':'#7dd3fc', '--blue-light':'#082f49', '--yellow':'#fde047', '--yellow-light':'#451a03',
+      '--green':'#4ade80', '--green-dark':'#86efac', '--red':'#f87171', '--red-dark':'#fca5a5', '--purple':'#c084fc', '--orange':'#fb923c',
+      '--teal':'#2dd4bf', '--pink':'#f472b6', '--always-dark':'#78350f', '--bg-line':'rgba(255,255,255,0.05)'
+    },
+    { // 18. Pale Blue
+      '--paper':'#f0f9ff', '--paper2':'#e0f2fe', '--kraft':'#bae6fd', '--ink':'#0c4a6e', '--ink-light':'#075985', '--white':'#f0f9ff',
+      '--blue':'#0ea5e9', '--blue-dark':'#0284c7', '--blue-light':'#f0f9ff', '--yellow':'#f59e0b', '--yellow-light':'#fef3c7',
+      '--green':'#10b981', '--green-dark':'#059669', '--red':'#ef4444', '--red-dark':'#b91c1c', '--purple':'#8b5cf6', '--orange':'#f97316',
+      '--teal':'#14b8a6', '--pink':'#d946ef', '--always-dark':'#0c4a6e', '--bg-line':'rgba(12,74,110,0.05)'
+    },
+    { // 19. Maroon Bold
+      '--paper':'#4c0519', '--paper2':'#881337', '--kraft':'#9f1239', '--ink':'#ffe4e6', '--ink-light':'#fecdd3', '--white':'#881337',
+      '--blue':'#38bdf8', '--blue-dark':'#7dd3fc', '--blue-light':'#1e3a8a', '--yellow':'#fde047', '--yellow-light':'#4c0519',
+      '--green':'#4ade80', '--green-dark':'#86efac', '--red':'#fb7185', '--red-dark':'#fda4af', '--purple':'#c084fc', '--orange':'#fb923c',
+      '--teal':'#2dd4bf', '--pink':'#f472b6', '--always-dark':'#4c0519', '--bg-line':'rgba(255,255,255,0.05)'
+    },
+    { // 20. Concrete Grey
+      '--paper':'#d4d4d8', '--paper2':'#e4e4e7', '--kraft':'#f4f4f5', '--ink':'#18181b', '--ink-light':'#27272a', '--white':'#d4d4d8',
+      '--blue':'#3b82f6', '--blue-dark':'#2563eb', '--blue-light':'#bfdbfe', '--yellow':'#f59e0b', '--yellow-light':'#fef3c7',
+      '--green':'#10b981', '--green-dark':'#059669', '--red':'#ef4444', '--red-dark':'#dc2626', '--purple':'#8b5cf6', '--orange':'#f97316',
+      '--teal':'#14b8a6', '--pink':'#db2777', '--always-dark':'#18181b', '--bg-line':'rgba(24,24,27,0.08)'
+    }
   ];
-
-  const palettes = userPalettes.map(p => {
-    const isDark = p.isDark;
-    delete p.isDark;
-    
-    return {
-      ...p,
-      '--kraft': isDark ? p['--paper2'] : '#e8d9b5',
-      '--ink-light': isDark ? '#9CA3AF' : '#4B5563',
-      '--white': isDark ? p['--paper2'] : '#ffffff',
-      '--always-dark': '#000000',
-      '--bg-line': isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.06)',
-      '--blue-dark': isDark ? p['--blue'] : '#2563eb',
-      '--blue-light': isDark ? '#1e3a8a' : '#bfdbfe',
-      '--yellow-light': isDark ? '#422006' : '#fef08a',
-      '--green-dark': isDark ? p['--green'] : '#16a34a',
-      '--red': isDark ? '#ef4444' : '#f87171',
-      '--red-dark': isDark ? '#fca5a5' : '#dc2626',
-      '--purple': isDark ? '#a855f7' : '#a78bfa',
-      '--orange': isDark ? '#f97316' : '#fb923c',
-      '--teal': isDark ? '#14b8a6' : '#2dd4bf',
-      '--pink': isDark ? '#ec4899' : '#f9a8d4',
-    };
-  });
 
   let currentIndex = parseInt(localStorage.getItem('themeIndex') || '0');
 
@@ -84,14 +160,13 @@
   });
 })();
 
-/* ====== PROGRESS ====== */
+/* ====== SCROLL PROGRESS + NAV ACTIVE ====== */
 const prog=document.getElementById('progress');
 const nav=document.getElementById('nav');
 window.addEventListener('scroll',()=>{
   const s=window.scrollY, m=document.body.scrollHeight-window.innerHeight;
   prog.style.width=(m>0?(s/m*100):0)+'%';
   nav.classList.toggle('scrolled',s>60);
-  
   const sections=['hero','edu','experience','achievements','projects','courses','contact'];
   let cur='hero';
   for(const id of sections){
@@ -121,11 +196,11 @@ document.querySelectorAll('.sticker').forEach((el,i)=>{
 /* ====== MARQUEE BUILD ====== */
 (function(){
   const items=["Marketing","B2B Lead Gen","SEO Content","Email Automation","Event Direction","Team Leadership","Research","AR in Retail","Brevo","Upwork","IIT Bombay","Top 20 NEC","Published Researcher"];
-  const txt=items.map(i=>`<span>${i} ✦</span>`).join('');
+  const txt=items.map(i=>`<span>${i} ★</span>`).join('');
   document.getElementById('mqTrack').innerHTML=txt+txt;
 })();
 
-/* ====== REVEAL ====== */
+/* ====== REVEAL ON SCROLL ====== */
 const io=new IntersectionObserver(es=>{
   es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
 },{threshold:.12});
@@ -143,14 +218,14 @@ const counterIO=new IntersectionObserver(es=>{
 },{threshold:.4});
 document.querySelectorAll('.stat-num').forEach(el=>counterIO.observe(el));
 
-/* ====== CONFETTI ====== */
-const colors=['#60a5fa','#fde047','#4ade80','#fb923c','#f87171','#a78bfa','#2dd4bf','#f9a8d4'];
+/* ====== CONFETTI ON ACHIEVEMENT HOVER ====== */
+const confettiColors=['#60a5fa','#fde047','#4ade80','#fb923c','#f87171','#a78bfa','#2dd4bf','#f9a8d4'];
 document.querySelectorAll('.ach-note').forEach(card=>{
   card.addEventListener('mouseenter',()=>{
     for(let i=0;i<6;i++){
       const c=document.createElement('span');
       c.className='confetti';
-      c.style.background=colors[Math.floor(Math.random()*colors.length)];
+      c.style.background=confettiColors[Math.floor(Math.random()*confettiColors.length)];
       c.style.left=(20+Math.random()*60)+'%';
       c.style.top='10%';
       c.style.transform=`rotate(${Math.random()*360}deg)`;
@@ -162,7 +237,7 @@ document.querySelectorAll('.ach-note').forEach(card=>{
   });
 });
 
-/* ====== CAROUSEL ====== */
+/* ====== PROJECTS CAROUSEL ====== */
 (function(){
   const track=document.getElementById('carTrack');
   const viewport=document.querySelector('.carousel-viewport');
@@ -205,7 +280,7 @@ document.querySelectorAll('.ach-note').forEach(card=>{
   prevBtn.addEventListener('click',()=>{idx=idx<=0?maxIdx():idx-1;update();});
   nextBtn.addEventListener('click',()=>{idx=idx>=maxIdx()?0:idx+1;update();});
 
-  // touch swipe
+  // Touch swipe support
   let sx=0,sy=0,active=false;
   viewport.addEventListener('touchstart',e=>{const t=e.changedTouches[0];sx=t.clientX;sy=t.clientY;active=true;},{passive:true});
   viewport.addEventListener('touchend',e=>{
